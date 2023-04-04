@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"log"
 	"net/http"
 	"test_H5B/output"
 
@@ -23,6 +24,7 @@ func (control *Controller) SearchGet(c echo.Context) error {
 		// Info: On fails should be 500 => this error should never occur
 		return c.JSON(http.StatusInternalServerError, output.Error{Error: err.Error()})
 	}
+	log.Println(control.MemCache, searchWord)
 	if _, found := control.MemCache[searchWord]; found {
 		out = control.MemCache[searchWord]
 	}

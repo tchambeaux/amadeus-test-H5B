@@ -18,6 +18,7 @@ func Build(content []byte) (map[string]*output.Search, error) {
 		r, _, err := reader.ReadRune()
 		if err != nil {
 			if err == io.EOF {
+				saveWord(word, currentLine, out)
 				break
 			}
 			return nil, err
